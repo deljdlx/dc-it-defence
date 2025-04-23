@@ -1,0 +1,20 @@
+/* Styles spécifiques pour les cellules de la grille */
+
+.grid-cell {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  transition: background-color 0.2s ease;
+}
+
+/* Styles pour les différents types de cellules */
+.cell-wall {
+  background-color: #333;
+  border-color: #222;
+}
+
+.cell-path {
+  background-color: #f0f0f0;
+  border-color: #ddd;
+}

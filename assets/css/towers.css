@@ -1,0 +1,232 @@
+/* Styles spécifiques pour les tours (développeurs) */
+
+.tower {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tower-inner {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tower-level {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles pour les différents types de tours */
+.tower-fullstack {
+  background-color: #4B0082; /* Indigo - polyvalent */
+}
+
+.tower-frontend {
+  background-color: #FF6347; /* Tomato - vif pour le frontend */
+}
+
+.tower-backend {
+  background-color: #1E90FF; /* Bleu dodger - classique pour le backend */
+}
+
+.tower-devops {
+  background-color: #32CD32; /* Vert lime - associé à l'infrastructure */
+}
+
+/* Styles pour les cellules qui ont une tour */
+.grid-cell.has-tower {
+  position: relative;
+}
+
+/* Animation de niveau pour les tours */
+.tower[data-level="2"] {
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.tower[data-level="3"] {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+}
+
+/* Animation de surbrillance au survol */
+.tower:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* Styles pour l'indicateur de compétence active */
+.tower-skill-indicator {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Styles pour l'indicateur de niveau de compétence */
+.skill-level {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  background-color: #ffcc00;
+  color: #333;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 9px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: 1px solid #333;
+}
+
+/* Styles pour les différentes compétences */
+.skill-html-css {
+  background-color: #e34c26; /* Orange/Rouge HTML */
+}
+
+.skill-javascript {
+  background-color: #f0db4f; /* Jaune JavaScript */
+}
+
+.skill-php {
+  background-color: #8993be; /* Bleu/violet PHP */
+}
+
+.skill-sql {
+  background-color: #00758f; /* Bleu MySQL */
+}
+
+.skill-docker {
+  background-color: #0db7ed; /* Bleu Docker */
+}
+
+.skill-react {
+  background-color: #61dafb; /* Bleu React */
+}
+
+.skill-java {
+  background-color: #f89820; /* Orange Java */
+}
+
+.skill-git {
+  background-color: #f34f29; /* Rouge Git */
+}
+
+/* Niveaux des compétences */
+.tower-skill-indicator[data-skill-level="1"] {
+  opacity: 0.7;
+}
+
+.tower-skill-indicator[data-skill-level="2"] {
+  opacity: 0.8;
+}
+
+.tower-skill-indicator[data-skill-level="3"] {
+  opacity: 0.9;
+}
+
+.tower-skill-indicator[data-skill-level="4"] {
+  opacity: 1;
+  box-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+}
+
+.tower-skill-indicator[data-skill-level="5"] {
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+}
+
+/* Pour les niveaux supérieurs */
+.tower-skill-indicator[data-skill-level="6"],
+.tower-skill-indicator[data-skill-level="7"],
+.tower-skill-indicator[data-skill-level="8"],
+.tower-skill-indicator[data-skill-level="9"],
+.tower-skill-indicator[data-skill-level="10"] {
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.7);
+}
+
+/* Styles pour l'indicateur de portée */
+.range-indicator {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none; /* Pour que les événements souris passent à travers */
+  z-index: 5; /* Au-dessus de la grille mais en-dessous des tours */
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrage parfait */
+}
+
+/* Styles spécifiques pour chaque type de compétence */
+.range-html_css {
+  background-color: rgba(227, 76, 38, 0.3); /* Orange/Rouge HTML avec transparence */
+  border: 2px dashed #e34c26;
+}
+
+.range-javascript {
+  background-color: rgba(240, 219, 79, 0.3); /* Jaune JavaScript avec transparence */
+  border: 2px dashed #f0db4f;
+}
+
+.range-php {
+  background-color: rgba(137, 147, 190, 0.3); /* Bleu/violet PHP avec transparence */
+  border: 2px dashed #8993be;
+}
+
+.range-sql {
+  background-color: rgba(0, 117, 143, 0.3); /* Bleu MySQL avec transparence */
+  border: 2px dashed #00758f;
+}
+
+.range-docker {
+  background-color: rgba(13, 183, 237, 0.3); /* Bleu Docker avec transparence */
+  border: 2px dashed #0db7ed;
+}
+
+.range-react {
+  background-color: rgba(97, 218, 251, 0.3); /* Bleu React avec transparence */
+  border: 2px dashed #61dafb;
+}
+
+.range-java {
+  background-color: rgba(248, 152, 32, 0.3); /* Orange Java avec transparence */
+  border: 2px dashed #f89820;
+}
+
+.range-git {
+  background-color: rgba(243, 79, 41, 0.3); /* Rouge Git avec transparence */
+  border: 2px dashed #f34f29;
+}

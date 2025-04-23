@@ -1,0 +1,254 @@
+{
+  "map": [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ],
+  "cellTypes": [
+    {
+      "id": 0,
+      "name": "wall",
+      "walkable": false,
+      "cssClass": "cell-wall"
+    },
+    {
+      "id": 1,
+      "name": "path",
+      "walkable": true,
+      "cssClass": "cell-path"
+    }
+  ],
+  "skills": [
+    {
+      "id": "html_css",
+      "name": "html_css",
+      "label": "HTML/CSS",
+      "damage": 15,
+      "range": 2,
+      "cooldown": 800,
+      "targetType": "ui",
+      "effectModifier": 1.5,
+      "cssClass": "skill-html-css",
+      "description": "Intégration de maquettes et création d'interfaces utilisateur"
+    },
+    {
+      "id": "javascript",
+      "name": "javascript",
+      "label": "JavaScript",
+      "damage": 12,
+      "range": 3,
+      "cooldown": 1000,
+      "targetType": "frontend",
+      "effectModifier": 1.3,
+      "cssClass": "skill-javascript",
+      "description": "Manipulation du DOM et développement d'interfaces interactives"
+    },
+    {
+      "id": "php",
+      "name": "php",
+      "label": "PHP",
+      "damage": 18,
+      "range": 2.5,
+      "cooldown": 1200,
+      "targetType": "backend",
+      "effectModifier": 1.4,
+      "cssClass": "skill-php",
+      "description": "Traitement côté serveur et gestion des données"
+    },
+    {
+      "id": "sql",
+      "name": "sql",
+      "label": "SQL",
+      "damage": 20,
+      "range": 2,
+      "cooldown": 1400,
+      "targetType": "database",
+      "effectModifier": 1.7,
+      "cssClass": "skill-sql",
+      "description": "Requêtes et optimisation des bases de données"
+    },
+    {
+      "id": "docker",
+      "name": "docker",
+      "label": "Docker",
+      "damage": 14,
+      "range": 4,
+      "cooldown": 1600,
+      "targetType": "infrastructure",
+      "effectModifier": 1.5,
+      "cssClass": "skill-docker",
+      "description": "Conteneurisation et déploiement d'applications"
+    },
+    {
+      "id": "react",
+      "name": "react",
+      "label": "React",
+      "damage": 16,
+      "range": 2.5,
+      "cooldown": 900,
+      "targetType": "frontend",
+      "effectModifier": 1.5,
+      "cssClass": "skill-react",
+      "description": "Développement d'interfaces utilisateur avec React"
+    },
+    {
+      "id": "java",
+      "name": "java",
+      "label": "Java",
+      "damage": 22,
+      "range": 3,
+      "cooldown": 1400,
+      "targetType": "backend",
+      "effectModifier": 1.4,
+      "cssClass": "skill-java",
+      "description": "Développement backend et applications d'entreprise"
+    },
+    {
+      "id": "git",
+      "name": "git",
+      "label": "Git",
+      "damage": 10,
+      "range": 5,
+      "cooldown": 1200,
+      "targetType": "all",
+      "effectModifier": 1.2,
+      "cssClass": "skill-git",
+      "description": "Gestion de version et collaboration"
+    }
+  ],
+  "towerTypes": [
+    {
+      "id": 1,
+      "name": "fullstack",
+      "label": "Développeur Fullstack",
+      "cost": 100,
+      "cssClass": "tower-fullstack",
+      "description": "Développeur polyvalent efficace contre tous types de tickets",
+      "skills": ["html_css", "javascript", "php"]
+    },
+    {
+      "id": 2,
+      "name": "frontend",
+      "label": "Intégrateur Frontend",
+      "cost": 75,
+      "cssClass": "tower-frontend",
+      "description": "Spécialiste de l'intégration, très efficace contre les tickets UI",
+      "skills": ["html_css", "javascript", "react"]
+    },
+    {
+      "id": 3,
+      "name": "backend",
+      "label": "Développeur Backend",
+      "cost": 125,
+      "cssClass": "tower-backend",
+      "description": "Expert en logique métier et bases de données",
+      "skills": ["php", "sql", "java"]
+    },
+    {
+      "id": 4,
+      "name": "devops",
+      "label": "DevOps",
+      "cost": 150,
+      "cssClass": "tower-devops",
+      "description": "Spécialiste de l'infrastructure et du déploiement",
+      "skills": ["docker", "git", "javascript"]
+    }
+  ],
+  "initialTowers": [
+    {
+      "type": 1,
+      "position": {"row": 3, "col": 2}
+    },
+    {
+      "type": 2,
+      "position": {"row": 6, "col": 5}
+    }
+  ],
+  "enemyTypes": [
+    {
+      "id": 1,
+      "name": "ui_bug",
+      "label": "Bug UI",
+      "type": "ui",
+      "health": 50,
+      "speed": 0.5,
+      "reward": 10,
+      "cssClass": "enemy-ui-bug",
+      "description": "Problème d'interface utilisateur",
+      "resistance": {
+        "php": 0.5,
+        "sql": 0.8,
+        "java": 0.6
+      }
+    },
+    {
+      "id": 2,
+      "name": "feature_request",
+      "label": "Demande de fonctionnalité",
+      "type": "frontend",
+      "health": 80,
+      "speed": 0.3,
+      "reward": 15,
+      "cssClass": "enemy-feature-request",
+      "description": "Nouvelle fonctionnalité à implémenter",
+      "resistance": {
+        "sql": 0.7,
+        "docker": 0.9
+      }
+    },
+    {
+      "id": 3,
+      "name": "database_issue",
+      "label": "Problème de BDD",
+      "type": "database",
+      "health": 100,
+      "speed": 0.2,
+      "reward": 20,
+      "cssClass": "enemy-database-issue",
+      "description": "Problème de base de données",
+      "resistance": {
+        "html_css": 0.9,
+        "javascript": 0.6,
+        "react": 0.7
+      }
+    },
+    {
+      "id": 4,
+      "name": "critical_bug",
+      "label": "Bug Critique",
+      "type": "all",
+      "health": 150,
+      "speed": 0.4,
+      "reward": 30,
+      "cssClass": "enemy-critical-bug",
+      "description": "Bug critique à résoudre d'urgence",
+      "resistance": {
+        "git": 0.5
+      }
+    }
+  ],
+  "waves": [
+    {
+      "id": 1,
+      "name": "Premier ticket",
+      "spawnPoints": [
+        {"row": 4, "col": 1}
+      ],
+      "spawnInterval": 2000,
+      "enemies": [
+        {
+          "type": 1,
+          "level": 1,
+          "spawnPoint": 0
+        }
+      ]
+    }
+  ]
+}
