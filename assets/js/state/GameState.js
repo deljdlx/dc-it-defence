@@ -398,4 +398,124 @@ export class GameState {
             enemyTypes: this.enemyTypes
         };
     }
+
+    /**
+     * Met à jour l'état du jeu à chaque tick de l'horloge
+     * @param {Object} gameTime - Informations sur le temps du jeu
+     */
+    update(gameTime) {
+        // Récupérer le temps écoulé et le delta time
+        const currentTime = gameTime.elapsed;
+        const deltaTime = gameTime.delta;
+        
+        // Mettre à jour les vagues d'ennemis si actives
+        if (this.currentWave && this.currentWave.isWaveActive()) {
+            const newEnemy = this.currentWave.update(currentTime);
+            
+            // Si un nouvel ennemi a été créé, l'ajouter à la liste
+            if (newEnemy) {
+                this.enemies.push(newEnemy);
+            }
+            
+            // Vérifier si la vague est terminée
+            if (this.currentWave.isWaveCompleted()) {
+                console.log(`Vague ${this.currentWave.getId()} terminée`);
+                this.startNextWave();
+            }
+        }
+        
+        // Mettre à jour la logique des tours
+        this.updateTowers(currentTime);
+        
+        // Mettre à jour la logique des ennemis
+        this.updateEnemies(deltaTime);
+    }
+
+    /**
+     * Met à jour la logique des tours
+     * @param {number} currentTime - Timestamp actuel
+     */
+    updateTowers(currentTime) {
+        for (const tower of this.towers) {
+            // Vérifier si la tour est prête à attaquer
+            if (tower.isReadyToAttack(currentTime)) {
+                // Trouver l'ennemi le plus proche dans la portée
+                const closestEnemy = this.findClosestEnemyToTower(tower);
+                
+                // Si un ennemi est trouvé, l'attaquer
+                if (closestEnemy) {
+                    // Calculer les dégâts effectifs
+                    const damage = tower.getEffectiveDamage(closestEnemy.getType().type);
+                    
+                    // Appliquer les dégâts à l'ennemi
+                    const isAlive = closestEnemy.takeDamage(damage, tower.getActiveSkill().getName());
+                    
+                    // Réinitialiser le cooldown de la tour
+                    tower.resetCooldown(currentTime);
+                    
+                    // Si l'ennemi est mort, le traiter
+                    if (!isAlive) {
+                        this.handleEnemyDefeat(closestEnemy);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Met à jour la logique des ennemis
+     * @param {number} deltaTime - Temps écoulé depuis le dernier tick
+     */
+    updateEnemies(deltaTime) {
+        // Pour l'instant, les ennemis sont statiques, mais ici on pourrait
+        // ajouter la logique de déplacement des ennemis
+    }
+
+    /**
+     * Gère la défaite d'un ennemi
+     * @param {Enemy} enemy - L'ennemi vaincu
+     */
+    handleEnemyDefeat(enemy) {
+        // Récupérer la récompense
+        // this.resources += enemy.getReward();
+        
+        // Notifier la vague
+        if (this.currentWave) {
+            this.currentWave.enemyDefeated(enemy);
+        }
+        
+        // Garder l'ennemi dans la liste mais marquer comme mort
+        // Il sera retiré visuellement par le renderer
+    }
+
+    /**
+     * Démarre la vague suivante
+     */
+    startNextWave() {
+        if (!this.waves || this.waves.length === 0) {
+            console.log('Aucune vague disponible');
+            return false;
+        }
+        
+        // Si aucune vague n'est en cours, démarrer la première
+        if (!this.currentWave) {
+            this.currentWaveIndex = 0;
+        } else {
+            // Sinon, passer à la vague suivante
+            this.currentWaveIndex++;
+        }
+        
+        // Vérifier si nous avons atteint la dernière vague
+        if (this.currentWaveIndex >= this.waves.length) {
+            console.log('Toutes les vagues ont été complétées');
+            return false;
+        }
+        
+        // Démarrer la nouvelle vague
+        this.currentWave = this.waves[this.currentWaveIndex];
+        this.currentWave.start();
+        
+        console.log(`Vague ${this.currentWave.getId()} démarrée`);
+        return true;
+    }
 }
